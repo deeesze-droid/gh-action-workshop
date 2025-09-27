@@ -14,10 +14,21 @@ jobs:
     steps:
       - name: Get Code
         uses: actions/checkout@v4
+
+      - name: Cache npm dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
       - name: Install deps
         run: npm install
+
       - name: Build
         run: npm run build
+
       - name: upload dist folder
         uses: actions/upload-artifact@v4
         with:

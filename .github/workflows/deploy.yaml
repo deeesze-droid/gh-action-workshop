@@ -8,10 +8,18 @@ on:
     types:
       - opened
 
+# env:
+#   BUN_VERSION: 1.2.18
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Print Bun Version
+        run: echo "Bun Version: ${{ vars.BUN_VERSION }}"
+      - name: Print API Key
+        run: echo "API Key: ${{ secrets.API_KEY }}"
+
       - name: Get Code
         uses: actions/checkout@v4
 

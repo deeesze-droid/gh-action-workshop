@@ -45,8 +45,9 @@ jobs:
           path: |
             dist
             public
-      - name: Force failed
-        run: exit 1
+      # ==== For debugging purpose ====
+      # - name: Force failed
+      #   run: exit 1
 
   deploy:
     # if: github.ref == 'refs/heads/main'

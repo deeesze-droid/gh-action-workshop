@@ -9,6 +9,17 @@ jobs:
         node: [16, 18, 20]
         os: [ubuntu-latest, windows-latest, macos-latest]
         browser: [chrome, firefox, safari]
+        exclude:
+          - node: 16
+            os: macos-latest
+            browser: safari
+          - node: 20
+            os: windows-latest
+
+        include:
+          - node: 84000
+            os: buddha-os-latest
+            browser: chrome
     steps:
       - name: Print Bun version and test browser
         run: echo "${{ matrix.node }} - ${{ matrix.browser }} - ${{ matrix.os }}"

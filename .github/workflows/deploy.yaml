@@ -63,23 +63,47 @@ jobs:
         run: ls -R
       - name: Deploy
         run: echo "Deploying..."
-  notify:
+  notify-success:
     runs-on: ubuntu-latest
     needs:
       - build
       - deploy
-    if: always()
+    # if: always()
+    if: success()
     steps:
-      - name: Notify to Discord Text Channel 1
-        env:
-          DISCORD_WEBHOOK: "https://discord.com/api/webhooks/1421697869458706533/W2UqZa7gD95EU7ixa4gQN3QLz3pWc3oFepvpv16XWxfpuMMTTiqbNULZWrBBmPfPlYBY"
-        uses: Ilshidur/action-discord@master
-        with:
-          args: "${{ github.sha }} by Knightington EECU 104"
+      # - name: Notify to Discord Text Channel 1
+      #   env:
+      #     DISCORD_WEBHOOK: "https://discord.com/api/webhooks/1421697869458706533/W2UqZa7gD95EU7ixa4gQN3QLz3pWc3oFepvpv16XWxfpuMMTTiqbNULZWrBBmPfPlYBY"
+      #   uses: Ilshidur/action-discord@master
+      #   with:
+      #     # args: "${{ github.sha }} by Knightington EECU 104"
+      #     args: "Deploy Success! by Knightington EECU 104"
 
-      - name: Notify to Discord Text Channel 2
+      - name: Notify to Discord - Awesome Galaxy
         env:
           DISCORD_WEBHOOK: "https://discord.com/api/webhooks/1421698037386055700/neXYAmukhFUZ5dAsKP477E9shixsMec5GtPZvWHwp-JKEZy4KKz7M6nQ4G2n608XgbxR"
         uses: Ilshidur/action-discord@master
         with:
-          args: "${{ github.sha }} by Knightington EECU 104"
+          args: "Deploy Success! by Knightington EECU 104"
+
+  notify-failure:
+    runs-on: ubuntu-latest
+    needs:
+      - build
+      - deploy
+    if: failure()
+    steps:
+      # - name: Notify to Discord Text Channel 1
+      #   env:
+      #     DISCORD_WEBHOOK: "https://discord.com/api/webhooks/1421697869458706533/W2UqZa7gD95EU7ixa4gQN3QLz3pWc3oFepvpv16XWxfpuMMTTiqbNULZWrBBmPfPlYBY"
+      #   uses: Ilshidur/action-discord@master
+      #   with:
+      #     # args: "${{ github.sha }} by Knightington EECU 104"
+      #     args: "Deploy Failed! by Knightington EECU 104"
+
+      - name: Notify to Discord - Awesome Galaxy
+        env:
+          DISCORD_WEBHOOK: "https://discord.com/api/webhooks/1421698037386055700/neXYAmukhFUZ5dAsKP477E9shixsMec5GtPZvWHwp-JKEZy4KKz7M6nQ4G2n608XgbxR"
+        uses: Ilshidur/action-discord@master
+        with:
+          args: "Deploy Failed! by Knightington EECU 104"

@@ -1,0 +1,14 @@
+name: Matrix
+on:
+  push:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [16, 18, 20]
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        browser: [chrome, firefox, safari]
+    steps:
+      - name: Print Bun version and test browser
+        run: echo "${{ matrix.node }} - ${{ matrix.browser }} - ${{ matrix.os }}"

@@ -1,12 +1,10 @@
 name: Install deps and caching
 description: Install deps and caching
 runs:
-  using: composite
+  using: "composite"
   steps:
     - name: Clone repo
       uses: actions/checkout@v5
-
-    - name:
 
     - name: Cache npm dependencies
       uses: actions/cache@v4

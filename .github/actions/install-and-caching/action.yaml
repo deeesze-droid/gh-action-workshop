@@ -16,3 +16,4 @@ runs:
 
     - name: Install deps
       run: npm install
+      shell: bash
